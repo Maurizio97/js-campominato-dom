@@ -19,17 +19,19 @@
 
 const squareCont = document.querySelector(".container-game");
 
-let randNum = [];
+let bomb = [];
 let rangeBomb;
-
+let counterClick = document.querySelector("attempts");
 let btnChoise = document.querySelector("button");
-
+/* let click = 0;
+console.log(click); */
 console.log(btnChoise);
 
 let choiseLiv;
 btnChoise.addEventListener("click",
 
     function () {
+        squareCont.innerHTML = ` `
         let choise;
         choise = document.querySelector("select").value;
         //variabile contenente il livello scelto
@@ -46,7 +48,7 @@ btnChoise.addEventListener("click",
             gridGen(49, "liv-3");
         }
 
-        console.log(randNum);
+        console.log(bomb);
     }
 )
 
@@ -62,53 +64,44 @@ function genElement(typeEl, classEl ){
 
 function gridGen(liv, classLiv) {
     // creo un ciclo nella quale creerò una serie di numeri random
-    while (randNum.length < 16) {
+    while (bomb.length < 16) {
     //creo una variabile che diventa vera ogni volta che un numero è uguale a quelli della lista
     let found = false;
     // genero un numero random 
     let numGen = genNumRandom(1, rangeBomb);
     //confronto il numero generato con tutti quelli della lista partendo dal primo
-    for(let i = 0; i < randNum.length; i++) {
+    for(let i = 0; i < bomb.length; i++) {
         // se il numero è uguale a uno di quelli della lista la variabile di controllo diventa vera
-        if ( randNum[i] == numGen){
+        if ( bomb[i] == numGen){
             found = true
         }
     }
     //se il numero generato non è uguale a nesun numero della lista lo salvo nell'array    
     if (!found){
-        randNum.push(numGen);
+        bomb.push(numGen);
     }
 }
-    for ( let num = 1; num <= liv ; num++){
+    for ( let i = 1; i <= liv ; i++){
         let gameSquare = genElement("div", "square");
         let spanSquare = document.createElement("span");
         gameSquare.appendChild(spanSquare);
         gameSquare.classList.add(classLiv);
-        spanSquare.append(num);
+        spanSquare.append(i);
     
+        if(bomb.includes(i)){
+            gameSquare.classList.add('hit');
+        }
+
         gameSquare.addEventListener("click",
     
             function(){
-                for(let i = 0; i < randNum.length; i++){
-                    if(num == randNum[i]){
-                        this.classList.add("bomb");
-                        /* let indice = 0;
-                        while( indice < randNum.length && rangeBomb > 0 ){
-                            let found = false;
-                            if(randNum[indice] == rangeBomb ){
-                                gameSquare.classList.add("bomb");
-                                found = true
-                            }
-                            if (found === true){
-                                indice++
-                            } else {
-                                rangeBomb--
-                            }
-                        } */
-                    } else {
-                        this.classList.add("active");
+                this.classList.add("active");
+                if(this.className === `square ${classLiv} hit active`){
+                    const bombs = document.getElementsByClassName('hit');
+                    /* counterClick.innerText = ++click; */
+                    for ( let j = 0; j < bombs.length ; j++){
+                        bombs[j].classList.add('bomb');
                     }
-
                 }
 
             }
