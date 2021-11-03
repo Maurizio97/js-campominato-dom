@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(0, 43, 82);
+}
+
+.content-centering {
+    margin: 0 auto;
+    width: 40%;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    font-size: 55px;
+    margin-bottom: 20px
+}
+
+.choise-difficulty span {
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.container-game {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction:row;
+    border: 3px solid white;
+}
+
+.square {
+    aspect-ratio: 1;
+    border: 3px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+span {
+    color: white;
+    font-size: 25px;
+}
+
+.liv-1 {
+    width: calc(100% / 10);
+}
+
+.liv-2 {
+    width: calc(100% / 9);
+}
+
+.liv-3 {
+    width: calc(100% / 7);
+}
+
+.active {
+    background-color: darkcyan;
+}
