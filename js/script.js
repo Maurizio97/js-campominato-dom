@@ -92,7 +92,19 @@ function gridGen(liv, classLiv) {
                 for(let i = 0; i < randNum.length; i++){
                     if(num == randNum[i]){
                         this.classList.add("bomb");
-
+                        /* let indice = 0;
+                        while( indice < randNum.length && rangeBomb > 0 ){
+                            let found = false;
+                            if(randNum[indice] == rangeBomb ){
+                                gameSquare.classList.add("bomb");
+                                found = true
+                            }
+                            if (found === true){
+                                indice++
+                            } else {
+                                rangeBomb--
+                            }
+                        } */
                     } else {
                         this.classList.add("active");
                     }
